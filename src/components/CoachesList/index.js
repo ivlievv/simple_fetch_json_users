@@ -48,28 +48,6 @@ class CoachesList extends Component{
         }
     }
 
-/*    renderCoaches = () => {
-        const {coaches} = this.state;
-
-        return coaches.map(coach => (
-            <li key={coach.id}>
-                <div className={styles.coachContainer}>
-                        <img className={styles.photo} src={coach.photo} alt=""/>
-                        <h4>{coach.firstName + ' ' + coach.lastName}</h4>
-                        <h4>{coach.level}</h4>
-                    <img src="" alt=""/>
-                </div>
-            </li>
-        ))
-    }*/
-
-
-
-
-
-
-
-
     render() {
         const {coaches} = this.state;
         return (
@@ -81,13 +59,8 @@ class CoachesList extends Component{
                     coaches.map(coach  => (
                         <li key={coach.id}>
                             <CoachCard coach={coach}/>
-
                         </li>
-
-
                     ))
-
-
                 }
             </ul>
         )
