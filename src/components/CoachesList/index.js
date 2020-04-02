@@ -10,6 +10,7 @@ class CoachesList extends Component{
         super(props);
         this.state = {
             isFetching: false,
+            isSelected:false,
             coaches:[],
             error: null
         }
@@ -48,20 +49,33 @@ class CoachesList extends Component{
         }
     }
 
+    selectCoachByIndex = (index) =>{
+            this.state.coaches[index].isSelected = !this.state.coaches[index].isSelected
+        this.forceUpdate()
+    }
+
     render() {
         const {coaches} = this.state;
         return (
             <ul className={styles.container}>
                 {
+                    <li className={styles.listItem}>To:
+                        {
+                            coaches.filter(item => item.isSelected).map(selectedCoach => `${selectedCoach.firstName} ${selectedCoach.lastName}` ).join(', ')
+                        }
+                    </li>
+                }
+                {
                 this.renderSpinner()
                 }
                 {
-                    coaches.map(coach  => (
+                    coaches.map((coach, index)  => (
                         <li key={coach.id}>
-                            <CoachCard coach={coach}/>
+                            <CoachCard onSelect={() => {this.selectCoachByIndex(index)}} coach={coach}/>
                         </li>
                     ))
                 }
+
             </ul>
         )
     }

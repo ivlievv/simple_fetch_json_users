@@ -5,6 +5,7 @@ import ColorHash from 'color-hash';
 import styles from './style.module.css'
 import { mdiCheck } from '@mdi/js';
 import Icon from "@mdi/react";
+import classNames from 'classnames'
 
 const colorHash = new ColorHash()
 
@@ -12,7 +13,7 @@ const colorHash = new ColorHash()
 
 
 function CoachCard (props) {
-    const {coach: {firstName, lastName, photo, level}} = props;
+    const {coach: {firstName, lastName, photo, level, isSelected}} = props;
     const fullName =  `${firstName}   ${lastName}`;
     const imgStyle = {
         backgroundColor: colorHash.hex(fullName)
@@ -31,7 +32,7 @@ function CoachCard (props) {
                 <div className={styles.name}>{fullName}</div>
                 <div className={styles.level}>{level}</div>
             </div>
-            <div className={styles.checkBox}>
+            <div onClick={props.onSelect} className={classNames(styles.checkBox, {[styles.checked] : isSelected})}>
                 <Icon path={mdiCheck} color={"white"} size={'75%'}/>
             </div>
         </div>
